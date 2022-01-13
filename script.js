@@ -19,20 +19,29 @@ searchBtn.addEventListener("click", function () {
 
                 var weather = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude={part}&appid=0e4933cb5bb805602e78f96a75879640'
              console.log(weather)
+    weatherRequest(weather)
             })
     }
     latLon()
 
 });
-function weatherRequest() {
+function weatherRequest(weather) {
     fetch(weather)
-        .then(function (response) {
-            console.log(response)
-            return response.json()
+        .then(function (weatherData) {
+            console.log(weatherData)
+            return weatherData.json()
+
         })
         .catch(function (error) {
             console.log(error)
         })
+        .then(function (jsonWeather){
+            console.log(jsonWeather)
+        })
+        //
+
+        
+        
 }
 
 //create the tables that the information will be appended to 
