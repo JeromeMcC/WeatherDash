@@ -45,22 +45,43 @@ function weatherRequest(weather) {
             var humidity = jsonWeather.current.humidity
             var uvi = jsonWeather.current.uvi
             var windspd = jsonWeather.current.wind_speed
-
+            console.log(jsonWeather.daily)
             var currentCityNameEl = document.getElementById("location")
-            
+
             var currentTempEl = document.getElementById("currentTemp")
             var currentHumidityEl = document.getElementById("currentHum")
             var currentUviEl = document.getElementById("currentUvi")
             var currentWindspdEl = document.getElementById("currentWspd")
 
-            currentCityNameEl.innerHTML = cityName + currentCityNameEl.innerHTML
+            currentCityNameEl.innerHTML = cityName 
             var currentIconEl = document.getElementById("weatherIcon")
-            currentIconEl.src = 'http://openweathermap.org/img/wn/' + icon +'.png'
+            currentIconEl.src = 'http://openweathermap.org/img/wn/' + icon + '.png'
             currentTempEl.innerHTML = temp
             currentHumidityEl.innerHTML = humidity
             currentUviEl.innerHTML = uvi
             currentWindspdEl.innerHTML = windspd
-            //
+
+            var futureForecast = jsonWeather.daily
+            for (let i = 1; i <= 5; i++) {
+                //var icon = jsonWeather.daily.weather[i].icon
+                var temp = jsonWeather.daily[i].temp.day
+                var humidity = jsonWeather.daily[i].humidity
+                //var uvi = jsonWeather.daily[1].uvi delete
+                var windspd = jsonWeather.daily[i].wind_speed
+
+                var indexTempEl = document.getElementById("index"+i+"Temp")
+            var indexHumidityEl = document.getElementById("index"+i+"Hum")
+            //var indexUviEl = document.getElementById("index"+i+"Uvi")delete
+            var indexWindspdEl = document.getElementById("index"+i+"Wspd")
+
+            //var indexIconEl = document.getElementById("weatherIcon")
+            //indexIconEl.src = 'http://openweathermap.org/img/wn/' + icon + '.png'
+            indexTempEl.innerHTML = temp
+            indexHumidityEl.innerHTML = humidity
+            //indexUviEl.innerHTML = uvi
+            indexWindspdEl.innerHTML = windspd
+
+            }
         })
 
 
