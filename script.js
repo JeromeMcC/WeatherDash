@@ -1,7 +1,8 @@
 var searchBtn = document.getElementById("search")
+var city = document.getElementById("city").value
 
 searchBtn.addEventListener("click", function () {
-    var city = document.getElementById("city").value
+    city = document.getElementById("city").value
     console.log(city)
     var geoLoc = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=0e4933cb5bb805602e78f96a75879640'
     function latLon() {
@@ -18,8 +19,8 @@ searchBtn.addEventListener("click", function () {
                 var lon = jsonResponse[0].lon
 
                 var weather = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude={part}&units=imperial&appid=0e4933cb5bb805602e78f96a75879640'
-             console.log(weather)
-    weatherRequest(weather)
+                console.log(weather)
+                weatherRequest(weather)
             })
     }
     latLon()
@@ -35,13 +36,34 @@ function weatherRequest(weather) {
         .catch(function (error) {
             console.log(error)
         })
-        .then(function (jsonWeather){
+        .then(function (jsonWeather) {
             console.log(jsonWeather)
-        })
-        // create var to for the info from jsonweather to be appended to view lines 17 and 18 for examples
+            var cityName = city
+            //created a gobal variable  and then updated it on line 5 alternatively could have passed weather request the var of city as additional argument
+            var icon = jsonWeather.current.weather[0].icon//convert into actual icon?
+            var temp = jsonWeather.current.temp
+            var humidity = jsonWeather.current.humidity
+            var uvi = jsonWeather.current.uvi
+            var windspd = jsonWeather.current.wind_speed
 
-        
-        
+            var currentCityNameEl = document.getElementById("location")
+            
+            var currentTempEl = document.getElementById("currentTemp")
+            var currentHumidityEl = document.getElementById("currentHum")
+            var currentUviEl = document.getElementById("currentUvi")
+            var currentWindspdEl = document.getElementById("currentWspd")
+
+            currentCityNameEl.innerHTML = cityName + currentCityNameEl.innerHTML
+            var currentIconEl = document.getElementById("weatherIcon")
+            currentIconEl.src = 'http://openweathermap.org/img/wn/' + icon +'.png'
+            currentTempEl.innerHTML = temp
+            currentHumidityEl.innerHTML = humidity
+            currentUviEl.innerHTML = uvi
+            currentWindspdEl.innerHTML = windspd
+        })
+
+
+
 }
 
 //create the tables that the information will be appended to 
