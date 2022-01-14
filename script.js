@@ -60,6 +60,7 @@ function weatherRequest(weather) {
             currentHumidityEl.innerHTML = humidity
             currentUviEl.innerHTML = uvi
             currentWindspdEl.innerHTML = windspd
+            //
         })
 
 
