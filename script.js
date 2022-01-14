@@ -40,7 +40,7 @@ function weatherRequest(weather) {
             console.log(jsonWeather)
             var cityName = city
             //created a gobal variable  and then updated it on line 5 alternatively could have passed weather request the var of city as additional argument
-            var icon = jsonWeather.current.weather[0].icon//convert into actual icon?
+            var icon = jsonWeather.current.weather[0].icon
             var temp = jsonWeather.current.temp
             var humidity = jsonWeather.current.humidity
             var uvi = jsonWeather.current.uvi
@@ -53,7 +53,7 @@ function weatherRequest(weather) {
             var currentUviEl = document.getElementById("currentUvi")
             var currentWindspdEl = document.getElementById("currentWspd")
 
-            currentCityNameEl.innerHTML = cityName 
+            currentCityNameEl.innerHTML = cityName
             var currentIconEl = document.getElementById("weatherIcon")
             currentIconEl.src = 'http://openweathermap.org/img/wn/' + icon + '.png'
             currentTempEl.innerHTML = temp
@@ -63,23 +63,23 @@ function weatherRequest(weather) {
 
             var futureForecast = jsonWeather.daily
             for (let i = 1; i <= 5; i++) {
-                //var icon = jsonWeather.daily.weather[i].icon
+                var icon = jsonWeather.daily[i].weather[0].icon
                 var temp = jsonWeather.daily[i].temp.day
                 var humidity = jsonWeather.daily[i].humidity
                 //var uvi = jsonWeather.daily[1].uvi delete
                 var windspd = jsonWeather.daily[i].wind_speed
 
-                var indexTempEl = document.getElementById("index"+i+"Temp")
-            var indexHumidityEl = document.getElementById("index"+i+"Hum")
-            //var indexUviEl = document.getElementById("index"+i+"Uvi")delete
-            var indexWindspdEl = document.getElementById("index"+i+"Wspd")
+                var indexTempEl = document.getElementById("index" + i + "Temp")
+                var indexHumidityEl = document.getElementById("index" + i + "Hum")
+                //var indexUviEl = document.getElementById("index"+i+"Uvi")delete
+                var indexWindspdEl = document.getElementById("index" + i + "Wspd")
 
-            //var indexIconEl = document.getElementById("weatherIcon")
-            //indexIconEl.src = 'http://openweathermap.org/img/wn/' + icon + '.png'
-            indexTempEl.innerHTML = temp
-            indexHumidityEl.innerHTML = humidity
-            //indexUviEl.innerHTML = uvi
-            indexWindspdEl.innerHTML = windspd
+                var indexIconEl = document.getElementById("weather" + i + "Icon")
+                indexIconEl.src = 'http://openweathermap.org/img/wn/' + icon + '.png'
+                indexTempEl.innerHTML = temp
+                indexHumidityEl.innerHTML = humidity
+                //indexUviEl.innerHTML = uvi
+                indexWindspdEl.innerHTML = windspd
 
             }
         })
