@@ -17,7 +17,7 @@ searchBtn.addEventListener("click", function () {
                 var lat = jsonResponse[0].lat
                 var lon = jsonResponse[0].lon
 
-                var weather = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude={part}&appid=0e4933cb5bb805602e78f96a75879640'
+                var weather = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude={part}&units=imperial&appid=0e4933cb5bb805602e78f96a75879640'
              console.log(weather)
     weatherRequest(weather)
             })
@@ -38,7 +38,7 @@ function weatherRequest(weather) {
         .then(function (jsonWeather){
             console.log(jsonWeather)
         })
-        //
+        // create var to for the info from jsonweather to be appended to view lines 17 and 18 for examples
 
         
         
